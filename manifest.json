@@ -1,0 +1,17 @@
+﻿{
+  "name": "75 Hard Challenge",
+  "short_name": "75 Hard",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f3f1e8",
+  "theme_color": "#0f2f2f",
+  "description": "Daily checklist and countdown for the 75 Hard challenge.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

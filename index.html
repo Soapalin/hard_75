@@ -1,0 +1,171 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f2f2f" />
+    <meta name="description" content="75 Hard daily checklist and goal tracker" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>75 Hard PWA</title>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">75 HARD</p>
+        <h1>Show up every day.</h1>
+        <p class="lead">Set your goals, check them off daily, and watch the countdown hit zero.</p>
+      </div>
+      <div class="hero__badge" aria-hidden="true">
+        <span>Day</span>
+        <strong id="currentDay">1</strong>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <div class="panel__header">
+          <h2>Challenge</h2>
+          <button class="ghost" id="newChallenge" type="button">New</button>
+        </div>
+        <div class="challenge-grid">
+          <div>
+            <p class="label">Active challenge</p>
+            <select id="challengeSelect" aria-label="Active challenge"></select>
+          </div>
+          <div>
+            <p class="label">Name</p>
+            <input id="challengeName" type="text" maxlength="40" aria-label="Challenge name" />
+          </div>
+          <button id="saveChallengeName" type="button">Save name</button>
+          <button class="ghost" id="restartChallenge" type="button">Restart</button>
+        </div>
+        <div class="challenge-actions">
+          <button class="ghost" id="exportData" type="button">Export</button>
+          <label class="ghost file">
+            Import
+            <input id="importData" type="file" accept="application/json" />
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__header">
+          <h2>Countdown</h2>
+          <button class="ghost" id="resetCountdown" type="button">Reset</button>
+        </div>
+        <div class="countdown">
+          <div>
+            <p class="label">Total days</p>
+            <input id="countdownTotal" type="number" min="1" max="365" aria-label="Total days" />
+          </div>
+          <div>
+            <p class="label">Start date</p>
+            <input id="countdownStart" type="date" aria-label="Countdown start date" />
+          </div>
+          <div class="countdown__stat">
+            <p class="label">Days remaining</p>
+            <p id="daysRemaining" class="stat">--</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__header">
+          <h2>Today</h2>
+          <div class="today-meta">
+            <div class="date-chip" id="todayLabel"></div>
+            <label class="toggle">
+              <input id="lockToday" type="checkbox" />
+              <span>Lock today</span>
+            </label>
+          </div>
+        </div>
+        <ul id="dailyChecklist" class="checklist" aria-live="polite"></ul>
+      </section>
+
+      <section class="panel">
+        <div class="panel__header">
+          <h2>Stats</h2>
+          <span class="date-chip">This challenge</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <p class="label">Current streak</p>
+            <p id="currentStreak" class="stat">0</p>
+          </div>
+          <div class="stat-card">
+            <p class="label">Best streak</p>
+            <p id="bestStreak" class="stat">0</p>
+          </div>
+          <div class="stat-card">
+            <p class="label">Completion rate</p>
+            <p id="completionRate" class="stat">0%</p>
+          </div>
+          <div class="stat-card">
+            <p class="label">Days tracked</p>
+            <p id="daysTracked" class="stat">0</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__header">
+          <h2>Progress</h2>
+          <div class="date-chip" id="progressSummary">0/75</div>
+        </div>
+        <div id="progressGrid" class="progress-grid" aria-live="polite"></div>
+        <div class="review">
+          <div class="review__controls">
+            <div>
+              <p class="label">Review day</p>
+              <input id="reviewDate" type="date" aria-label="Review date" />
+            </div>
+            <label class="toggle">
+              <input id="reviewLock" type="checkbox" />
+              <span>Locked</span>
+            </label>
+          </div>
+          <ul id="reviewChecklist" class="checklist"></ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__header">
+          <h2>Reminders</h2>
+          <span class="date-chip">Notifications</span>
+        </div>
+        <div class="reminder-grid">
+          <label class="toggle">
+            <input id="reminderEnabled" type="checkbox" />
+            <span>Daily reminder</span>
+          </label>
+          <div>
+            <p class="label">Time</p>
+            <input id="reminderTime" type="time" aria-label="Reminder time" />
+          </div>
+          <button class="ghost" id="testNotification" type="button">Test</button>
+        </div>
+        <p class="helper">Reminders fire while the app is open or installed.</p>
+      </section>
+
+      <section class="panel">
+        <div class="panel__header">
+          <h2>Goals</h2>
+          <button class="ghost" id="resetGoals" type="button">Default</button>
+        </div>
+        <form id="goalForm" class="goal-form">
+          <input id="goalInput" type="text" placeholder="Add a daily goal" maxlength="80" aria-label="Add a daily goal" />
+          <button type="submit">Add</button>
+        </form>
+        <ul id="goalList" class="goal-list"></ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Progress is built in public: check each box, every day.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
